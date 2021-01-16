@@ -9,23 +9,29 @@ import android.util.SparseArray;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.airbnb.paris.Paris;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
-
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.quickstart.database.databinding.ActivityNewPostBinding;
+import com.google.firebase.quickstart.database.java.models.Post;
+import com.google.firebase.quickstart.database.java.models.User;
 
 public class AnalyzeActivity extends AppCompatActivity {
 	Uri imageUri;
 	TextRecognizer recognizer;
 	TableLayout table;
 	TableRow tableRow;
+	private DatabaseReference mDatabase;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

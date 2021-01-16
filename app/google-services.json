@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "97590556787",
+    "firebase_url": "https://whatsinmyfood-50f65-default-rtdb.firebaseio.com",
+    "project_id": "whatsinmyfood-50f65",
+    "storage_bucket": "whatsinmyfood-50f65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97590556787:android:17c8713812efc30ac0d206",
+        "android_client_info": {
+          "package_name": "li.raymond.whatsinmyfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97590556787-bj5ejvi63nq4rrtptfuvetavttogmjig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAly_2rEdLc3aJBL_Q73WzhKP3KXFjK3Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97590556787-bj5ejvi63nq4rrtptfuvetavttogmjig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
