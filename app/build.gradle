@@ -1,5 +1,6 @@
 plugins {
 	id 'com.android.application'
+	is 'com.google.gms.google-services'
 }
 
 android {
@@ -38,4 +39,11 @@ dependencies {
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 	implementation 'com.google.android.gms:play-services-mlkit-text-recognition:16.1.2'
 	implementation 'com.airbnb.android:paris:1.7.2'
+	implementation platform('com.google.firebase:firebase-bom:26.3.0')
+	implementation 'com.google.firebase:firebase-analytics'
+	implementation 'com.google.firebase:firebase-auth'
+	implementation 'com.google.firebase:firebase-firestore'
+
+
+
 }

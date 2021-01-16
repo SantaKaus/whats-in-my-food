@@ -26,7 +26,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 	TextRecognizer recognizer;
 	TableLayout table;
 	TableRow tableRow;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -104,6 +104,8 @@ public class AnalyzeActivity extends AppCompatActivity {
 	}
 
 	private String getDescription(String ingredient) {
+
+
 		return "aaaaaaa" + "\n" + "aaaaaaa"  + "\n" + "aaaaaaa";
 	}
 
