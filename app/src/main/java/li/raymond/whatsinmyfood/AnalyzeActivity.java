@@ -63,6 +63,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 		textView.setText(basicResult);
 		String formattedResult = basicResult.toLowerCase()
 			.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\(\\)\\s]", " ");
+
 		String[] ingredientList = formattedResult.split("  ");
 
 		for (int i = 0; i < ingredientList.length; i++) {

@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 	ImageView imagePreview;
 	int SELECT_PICTURE = 200;
 	Uri imageUri;
-	String currentPhotoPath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,16 +69,15 @@ public class MainActivity extends AppCompatActivity {
 		File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 		File image = File.createTempFile(imageFileName, ".jpg", storageDir);
 
-		currentPhotoPath = image.getAbsolutePath();
+		imageUri = Uri.fromFile(image);
 		return image;
 	}
 
 	private void takePhoto() {
 		Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//		startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
 		// Ensure that there's a camera activity to handle the intent
-		alertDialog("", "taking photo");
 		if (takePhotoIntent.resolveActivity(getPackageManager()) != null) {
-			alertDialog("", "camera found");
 			// Create the File where the photo should go
 			File photoFile = null;
 			try {
@@ -95,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
 				takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 				startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
 			}
-		} else {
-			alertDialog("", "camera not found");
 		}
 	}
 
@@ -113,15 +109,12 @@ public class MainActivity extends AppCompatActivity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (resultCode == RESULT_OK) {
-
-			if (requestCode == SELECT_PICTURE) {
-				// Get the url of the image from data
-				imageUri = data.getData();
-				if (null != imageUri) {
-					// update the preview image in the layout
-					imagePreview.setImageURI(imageUri);
-				}
+		if (resultCode == RESULT_OK && (requestCode == SELECT_PICTURE || requestCode == REQUEST_IMAGE_CAPTURE)) {
+			// Get the url of the image from data
+			imageUri = data.getData();
+			if (null != imageUri) {
+				// update the preview image in the layout
+				imagePreview.setImageURI(imageUri);
 			}
 		}
 	}
