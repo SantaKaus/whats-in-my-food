@@ -22,9 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.quickstart.database.databinding.ActivityNewPostBinding;
-import com.google.firebase.quickstart.database.java.models.Post;
-import com.google.firebase.quickstart.database.java.models.User;
+
 
 public class AnalyzeActivity extends AppCompatActivity {
 	Uri imageUri;
