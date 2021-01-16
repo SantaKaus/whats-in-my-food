@@ -1,6 +1,7 @@
 package li.raymond.whatsinmyfood;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -67,15 +68,17 @@ public class MainActivity extends AppCompatActivity {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 		String imageFileName = "JPEG_" + timeStamp + "_";
 		File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+		alertDialog("", String.valueOf(storageDir));
 		File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-
+		if (image == null) {
+			alertDialog("", "Image is null");
+		}
 		imageUri = Uri.fromFile(image);
 		return image;
 	}
 
 	private void takePhoto() {
 		Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//		startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
 		// Ensure that there's a camera activity to handle the intent
 		if (takePhotoIntent.resolveActivity(getPackageManager()) != null) {
 			// Create the File where the photo should go
@@ -87,11 +90,12 @@ public class MainActivity extends AppCompatActivity {
 			}
 			// Continue only if the File was successfully created
 			if (photoFile != null) {
-				Uri photoURI = FileProvider.getUriForFile(this,
-						"li.raymond.android.fileprovider",
-						photoFile);
-				takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-				startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
+				try {
+					takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+					startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
+				} catch (Exception e) {
+					alertDialog("Error", e.getMessage());
+				}
 			}
 		}
 	}
