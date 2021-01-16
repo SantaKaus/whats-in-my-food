@@ -10,6 +10,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.airbnb.paris.Paris;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -81,19 +83,23 @@ public class AnalyzeActivity extends AppCompatActivity {
 	private void populateTable(String[] iList) {
 
 		for (int i = 0; i < iList.length; i++) {
-			TableRow row = new TableRow(this);
-			row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-					TableRow.LayoutParams.MATCH_PARENT));
+			TableRow ingredientRow = new TableRow(this);
+			Paris.style(ingredientRow).apply(R.style.IngredientRow);
 
 			TextView ingredient = new TextView(this);
+			ingredient.setText(iList[i]);
+			ingredient.setTextAppearance(R.style.Ingredient);
+			ingredientRow.addView(ingredient);
+			table.addView(ingredientRow);
+
+			TableRow descriptionRow = new TableRow(this);
+			Paris.style(descriptionRow).apply(R.style.DescriptionRow);
+
 			TextView description = new TextView(this);
 			description.setText(getDescription(iList[i]));
-			ingredient.setText(iList[i]);
-
-			row.addView(ingredient);
-			row.addView(description);
-			table.addView(row);
-
+			description.setTextAppearance(R.style.Description);
+			descriptionRow.addView(description);
+			table.addView(descriptionRow);
 		}
 	}
 
