@@ -40,7 +40,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 	}
 
 	private void runTextRecognition() throws IOException {
-		recognizer =  new TextRecognizer.Builder(getApplicationContext()).build();
+		recognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 		Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 
 		if(recognizer.isOperational()) {
@@ -60,7 +60,6 @@ public class AnalyzeActivity extends AppCompatActivity {
 	}
 
 	private void createTable(String basicResult) {
-		textView.setText(basicResult);
 		String formattedResult = basicResult.toLowerCase()
 			.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\(\\)\\s]", " ");
 
