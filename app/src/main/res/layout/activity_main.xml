@@ -8,24 +8,36 @@
 		tools:ignore="HardcodedText">
 
 	<!--Button to open the image selector-->
+
+	<Button
+			android:id="@+id/takePhoto"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="32dp"
+			android:text="Take photo"
+			android:textColor="@android:color/white"
+			android:textSize="18sp" />
+
 	<Button
 			android:id="@+id/selectImage"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_centerHorizontal="true"
-			android:layout_marginTop="32dp"
+			android:layout_marginTop="100dp"
 			android:text="Select Image"
 			android:textColor="@android:color/white"
 			android:textSize="18sp" />
 
 	<!--ImageView to preview the selected image-->
+
 	<ImageView
 			android:id="@+id/preview"
 			android:layout_width="match_parent"
 			android:layout_height="300dp"
 			android:layout_below="@id/selectImage"
 			android:layout_marginStart="16dp"
-			android:layout_marginTop="16dp"
+			android:layout_marginTop="122dp"
 			android:layout_marginEnd="16dp" />
 
 	<Button

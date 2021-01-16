@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 		package="li.raymond.whatsinmyfood">
 
-	<uses-feature android:name="android.hardware.camera"
+	<uses-feature
+			android:name="android.hardware.camera"
 			android:required="true" />
 
 	<application
@@ -12,7 +13,8 @@
 			android:roundIcon="@mipmap/ic_launcher_round"
 			android:supportsRtl="true"
 			android:theme="@style/Theme.WhatsInMyFood">
-		<activity android:name=".AnalyzeActivity"
+		<activity
+				android:name=".AnalyzeActivity"
 				android:parentActivityName=".MainActivity">
 			<meta-data
 					android:name="android.support.PARENT_ACTIVITY"
@@ -25,6 +27,16 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+
+		<provider
+				android:name="androidx.core.content.FileProvider"
+				android:authorities="li.raymond.android.fileprovider"
+				android:exported="false"
+				android:grantUriPermissions="true">
+			<meta-data
+					android:name="android.support.FILE_PROVIDER_PATHS"
+					android:resource="@xml/file_paths" />
+		</provider>
 	</application>
 
 </manifest>
