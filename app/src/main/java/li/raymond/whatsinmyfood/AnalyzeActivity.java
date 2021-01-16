@@ -66,9 +66,9 @@ public class AnalyzeActivity extends AppCompatActivity {
 
 	private void createTable(String basicResult) {
 		String formattedResult = basicResult.toLowerCase()
-			.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\(\\)\\s]", " ");
+			.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\s]", " ");
 
-		String[] ingredientList = formattedResult.split("  ");
+		String[] ingredientList = formattedResult.split(" {2}");
 
 		for (int i = 0; i < ingredientList.length; i++) {
 			Matcher m = Pattern.compile("\\(([^)]+)\\)").matcher(ingredientList[i]);
