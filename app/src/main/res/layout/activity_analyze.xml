@@ -7,26 +7,15 @@
 		tools:context=".MainActivity"
 		tools:ignore="HardcodedText">
 
-	<!--Button to open the image selector-->
-	<Button
-			android:id="@+id/SaveImage"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:layout_marginTop="32dp"
-			android:text="Save Image"
-			android:textColor="@android:color/white"
-			android:textSize="18sp" />
-
-	<!--ImageView to preview the selected image-->
 
 	<TextView
-		android:id="@+id/textView"
-		android:layout_width="259dp"
-		android:layout_height="524dp"
-		android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true"
-		android:layout_marginBottom="69dp"
-		android:text="TextView" />
-
+			android:id="@+id/textView"
+			android:layout_width="286dp"
+			android:layout_height="377dp"
+			android:layout_alignParentStart="true"
+			android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true"
+			android:layout_marginStart="57dp"
+			android:layout_marginTop="124dp"
+			android:text="TextView" />
 </RelativeLayout>
