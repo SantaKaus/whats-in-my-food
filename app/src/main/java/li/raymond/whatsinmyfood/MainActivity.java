@@ -76,10 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
 	private void takePhoto() {
 		Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
 		// Ensure that there's a camera activity to handle the intent
-		alertDialog("", "taking photo");
 		if (takePhotoIntent.resolveActivity(getPackageManager()) != null) {
-			alertDialog("", "camera found");
 			// Create the File where the photo should go
 			File photoFile = null;
 			try {
@@ -95,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
 				takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 				startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
 			}
-		} else {
-			alertDialog("", "camera not found");
 		}
 	}
 
