@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.SparseArray;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.vision.Frame;
@@ -20,14 +22,15 @@ import java.util.regex.Pattern;
 public class AnalyzeActivity extends AppCompatActivity {
 	Uri imageUri;
 	TextRecognizer recognizer;
-	TextView textView;
-
+	TableLayout table;
+	TableRow tableRow;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_analyze);
-
-		textView = findViewById(R.id.textView);
+		
+		table = findViewById(R.id.ingredientTable);
 		Intent intent = getIntent();
 		String imagePath = intent.getExtras().getString("imageUri");
 		imageUri = Uri.parse(imagePath);
@@ -77,7 +80,25 @@ public class AnalyzeActivity extends AppCompatActivity {
 
 	private void populateTable(String[] iList) {
 
+		for (int i = 0; i < iList.length; i++) {
+			TableRow row = new TableRow(this);
+			row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+					TableRow.LayoutParams.MATCH_PARENT));
+
+			TextView ingredient = new TextView(this);
+			TextView description = new TextView(this);
+			description.setText(getDescription(iList[i]));
+			ingredient.setText(iList[i]);
+
+			row.addView(ingredient);
+			row.addView(description);
+			table.addView(row);
+
+		}
 	}
 
+	private String getDescription(String ingredient) {
+		return "aaaaaaa" + "\n" + "aaaaaaa"  + "\n" + "aaaaaaa";
+	}
 
 }
