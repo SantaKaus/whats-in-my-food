@@ -15,15 +15,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.paris.Paris;
-import com.chaquo.python.Python;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AnalyzeActivity extends AppCompatActivity {
 	Uri imageUri;
@@ -59,35 +61,39 @@ public class AnalyzeActivity extends AppCompatActivity {
 					stringBuilder.append(item.getValue());
 				}
 				// Can swap between keyIngredients and allIngredients
-				createTable(keyIngredients(stringBuilder.toString().toLowerCase()
-						.replace("\n", "").replace("\r", "")));
+				createTable(keyIngredients(stringBuilder.toString().toLowerCase()));
 			}
 		}
 	}
 
 	private String[] allIngredients(String basicResult) {
 		String formattedResult = basicResult.toLowerCase()
-				.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\-\\s\\(\\)\\[\\]]",
-				" ").replaceAll("[ \t\n\r]*", " ");
+				.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\-\\s]", " ").replaceAll("[ \t\n\r]*", " ");
 
 		String[] ingredientList = formattedResult.split(" {2}");
-
+		for (int i = 0; i < ingredientList.length; i++) {
+			Matcher m = Pattern.compile("\\(([^)]+)\\)").matcher(ingredientList[i]);
+			if (m.find()) {
+				ingredientList[i] = m.group(1);
+			}
+		}
 		return ingredientList;
 	}
 
-	private String[] getIngredients() {
-		return new String[]{"Soy lecithin", "Polyglycerol polyricinoleate"};
-	}
+	private Map<String, String> ingredients = Stream.of(new String[][]{
+			{"Soy lecithin", ""},
+			{"Polyglycerol", "Doe"},
+			{"polyricinoleate", ""}
+	}).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
 	private String[] keyIngredients(String basicResult) {
-		String[] ingredients = getIngredients();
 		ArrayList<String> ingredientList = new ArrayList<>();
-		for (String ingredient: ingredients) {
+		for (String ingredient : ingredients.keySet()) {
 			if (basicResult.contains(ingredient.toLowerCase())) {
 				ingredientList.add(ingredient);
 			}
 		}
-		alertDialog("Full List 2", basicResult);
+		alertDialog("1", basicResult);
 		return ingredientList.toArray(new String[0]);
 	}
 
@@ -111,15 +117,15 @@ public class AnalyzeActivity extends AppCompatActivity {
 	}
 
 	private String getDescription(String ingredient) {
-		return "aaaaaaa" + "\n" + "aaaaaaa" + "\n" + "aaaaaaa";
+		return ingredients.get(ingredient);
 	}
-
 
 	// Dialog used to send the user a message
 	private void alertDialog(String title, String message) {
 		AlertDialog alert = new AlertDialog.Builder(this).setMessage(message)
 				.setTitle(title).setCancelable(false)
-				.setPositiveButton("Ok", (dialog, id) -> {}).create();
+				.setPositiveButton("Ok", (dialog, id) -> {
+				}).create();
 		alert.show();
 		((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 	}
