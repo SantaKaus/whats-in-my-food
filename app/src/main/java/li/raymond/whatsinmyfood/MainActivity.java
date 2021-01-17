@@ -39,11 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
 		selectImageButton = findViewById(R.id.selectImage);
 		analyzeImageButton = findViewById(R.id.analyzeImage);
+		analyzeImageButton.setVisibility(View.GONE);
 		imagePreview = findViewById(R.id.preview);
 
 		selectImageButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				analyzeImageButton.setVisibility(View.VISIBLE);
 				chooseImage();
 			}
 		});
