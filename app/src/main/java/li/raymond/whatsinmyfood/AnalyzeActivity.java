@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.paris.Paris;
+import com.chaquo.python.Python;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -58,27 +59,24 @@ public class AnalyzeActivity extends AppCompatActivity {
 					stringBuilder.append(item.getValue());
 				}
 				// Can swap between keyIngredients and allIngredients
-				createTable(keyIngredients(stringBuilder.toString().toLowerCase()));
+				createTable(keyIngredients(stringBuilder.toString().toLowerCase()
+						.replace("\n", "").replace("\r", "")));
 			}
 		}
 	}
 
 	private String[] allIngredients(String basicResult) {
 		String formattedResult = basicResult.toLowerCase()
-				.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\-\\s]", " ").replaceAll("[ \t\n\r]*", " ");
+				.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\-\\s\\(\\)\\[\\]]",
+				" ").replaceAll("[ \t\n\r]*", " ");
 
 		String[] ingredientList = formattedResult.split(" {2}");
-		for (int i = 0; i < ingredientList.length; i++) {
-			Matcher m = Pattern.compile("\\(([^)]+)\\)").matcher(ingredientList[i]);
-			if (m.find()) {
-				ingredientList[i] = m.group(1);
-			}
-		}
+
 		return ingredientList;
 	}
 
 	private String[] getIngredients() {
-		return new String[]{"Soy lecithin", "Polyglycerol", "polyricinoleate", "Polyglycerol polyricinoleate"};
+		return new String[]{"Soy lecithin", "Polyglycerol polyricinoleate"};
 	}
 
 	private String[] keyIngredients(String basicResult) {
@@ -89,7 +87,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 				ingredientList.add(ingredient);
 			}
 		}
-		alertDialog("1", basicResult);
+		alertDialog("Full List 2", basicResult);
 		return ingredientList.toArray(new String[0]);
 	}
 

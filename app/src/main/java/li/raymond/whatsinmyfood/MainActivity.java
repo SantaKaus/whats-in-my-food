@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 		selectImageButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				analyzeImageButton.setVisibility(View.VISIBLE);
 				chooseImage();
 			}
 		});
@@ -70,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 	// this function is triggered when user selects the image from the imageChooser
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		analyzeImageButton.setVisibility(View.VISIBLE);
 
 		if (resultCode == RESULT_OK && (requestCode == SELECT_PICTURE || requestCode == REQUEST_IMAGE_CAPTURE)) {
 			// Get the url of the image from data

@@ -55,15 +55,15 @@
 	<ImageView
 		android:id="@+id/preview"
 		android:layout_width="395dp"
-		android:layout_height="262dp"
+		android:layout_height="412dp"
 		android:layout_above="@id/analyzeImage"
 		android:layout_below="@id/selectImage"
 		android:layout_centerHorizontal="true"
 		android:layout_marginStart="16dp"
 		android:layout_marginTop="55dp"
 		android:layout_marginEnd="16dp"
-		android:layout_marginBottom="204dp"
-		android:contentDescription="Select your image"/>
+		android:layout_marginBottom="52dp"
+		android:contentDescription="Select your image" />
 
 	<View
 		android:id="@+id/divider3"
