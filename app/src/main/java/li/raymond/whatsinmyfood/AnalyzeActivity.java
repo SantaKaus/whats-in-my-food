@@ -77,17 +77,18 @@ public class AnalyzeActivity extends AppCompatActivity {
 	}
 
 	private Map<String, String> ingredients = Stream.of(new String[][]{
-			{"Soy lecithin", "Emulsifier (helps things mix) and lubricant. Mostly harmless since quantities are very small. Can be safely consumed by people with soy allergies. May reduce cholesterol and provides Choline (an essential nutrient). Generally recognized as safe (GRAS)."},
-			{"Polyglycerol", "Polyglycerol polyricinoleate (PGPR) is an emulsifier (helps things mix) used with soy lecithin to reduce viscosity (thickness) in chocolates, spreads and salad dressings. Improves texture of baked goods. Generally recognized as safe (GRAS) when consumed in small amounts."},
-			{"Maltodextrin", "Eumlsifier (helps things mix). Improves flavor, thickness, and shelf life of food. Carbohydrate supplement. Comes from starch like potatoes. Provides energy without nutrition. May increase cholesterol when consumed in large amounts. Generally recognized as safe (GRAS)."},
-			{"Citric acid", "The sour part of lemon juice. Provides flavor and improves shelf life. One of the most common food additives. Added to canned foods to protect against botulism (dangerous disease). Helps the body transform food into energy. Dissolves kidney stones. Generally recognized as safe (GRAS)."},
-			{"Monosodium glutamate", "MSG enhances the umami (savory meaty flavor) of foods. Popular in Asian cooking. Stimulates nervous system, making you feel full without eating much. May cause weight gain and asthma attacks, and a dry mouth/throat. Safe in small amounts, harmful in large amounts."},
-			{"Red 40 lake", "Allura red synthetic dye made from petroleum (car gas). Adds color. Commonly found in dairy products, sweets, snacks, baked goods, and beverages. May cause allergies and worsen behavior of children with ADHD. Safe in small amounts."},
-			{"Yellow 6 lake", "Sunset yellow dye. Adds color. Used in candy, sauces, baked goods and preserved fruits. May cause allergies and worsen behavior of children with ADHD. Safe in small amounts."},
+			{"Soy lecithin", "Emulsifier (helps things mix) and lubricant. Mostly\nharmless since quantities are very small. Can be safely\nconsumed by people with soy allergies. May reduce\ncholesterol and provides Choline (essential nutrient).\nGenerally recognized as safe (GRAS).\n"},
+			{"Polyglycerol", "Polyglycerol polyricinoleate (PGPR) is an emulsifier\n(helps things mix) used with soy lecithin to reduce\nviscosity (thickness) in chocolates, spreads and salad\ndressings. Improves texture of baked goods.\nGenerally recognized as safe (GRAS) in small amounts.\n"},
+			{"Maltodextrin", "Eumlsifier (helps things mix). Adds flavor, thickness,\nand shelf life of food. Carbohydrate supplement.\nComes from starch like potatoes. Provides energy\nwithout nutrition. May increase cholesterol when\nconsumed in large amounts.\nGenerally recognized as safe (GRAS).\n"},
+			{"Citric acid", "The sour part of lemon juice. Provides flavor and improves shelf life. One of the most common food additives. Added to canned foods to protect against botulism (dangerous disease). Helps the body transform food into energy. Dissolves kidney stones.\nGenerally recognized as safe (GRAS).\n"},
+			{"Monosodium glutamate", "MSG enhances the umami (savory meaty flavor) of\nfoods. Popular in Asian cooking. Stimulates nervous\nsystem, making you feel full without eating much. May\ncause weight gain and asthma attacks.\nSafe in small amounts, harmful in large amounts.\n"},
+			{"Red 40 lake", "Allura red synthetic dye made from petroleum (car\ngas). Adds color. Commonly found in dairy products,\nsweets, snacks, baked goods, and beverages. May\ncause allergies and worsen ADHD symptoms.\nSafe in small amounts.\n"},
+			{"Yellow 6 lake", "Sunset yellow dye. Adds color. Used in candy, sauces,\nbaked goods and preserved fruits. May cause allergies\nand worsen behavior of children with ADHD.\nSafe in small amounts.\n"},
 			{"Sodium bicarbonate", "Baking soda. Helps baked goods rise. Safe."},
-			{"Disodium inosinate", "Umami (savory meaty flavor) enhancer. Used to avoid putting MSG in the ingredients list. Common in fast foods, including pizza and snacks like potato chips. Some allergies and side effects have been reported. Generally recognized as safe (GRAS)."},
-			{"Disodium guanylate", "Amplifies salt's salty taste. Commonly combined with MSG to enhance food flavor. Found in processed foods. Considered safe, but acceptable quantity of intake has yet to be determined due to lack of research."},
-			{"TBHQ", "Tertiary butylhydroquinone. Acts as an antioxidant but not natural. Extends shelf life of food (preservative). May damage liver and nervous system. Safety is questionable and banned in many countries."}
+			{"Disodium inosinate", "Umami (savory meaty flavor) enhancer. Used to avoid\nputting MSG in the ingredients list. Common in fast\nfoods, including pizza and snacks like potato chips.\nSome allergies and side effects have been reported.\nGenerally recognized as safe (GRAS).\n"},
+			{"Disodium guanylate", "Amplifies salt's salty taste. Commonly combined with\nMSG to enhance food flavor. Found in processed foods.\nConsidered safe, but acceptable quantity of intake\nhas yet to be determined due to lack of research.\n"},
+			{"TBHQ", "Tertiary butylhydroquinone. Acts as an antioxidant but\nnot natural. Extends shelf life of food (preservative).\nMay damage liver and nervous system.\nSafety is questionable and banned in many countries.\n"},
+			{"Wheat gluten", "Natural protein found in wheat. People allergic to\ngluten should avoid foods containing this ingredient.\nSafe for people without gluten allergies.\n"}
 	}).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
 	private String[] keyIngredients(String basicResult) {
@@ -96,7 +97,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 		for (String ingredient : ingredients.keySet())
 			if (basicResult.contains(ingredient.toLowerCase().replaceAll("\\s+", "")))
 				ingredientList.add(ingredient);
-		alertDialog("2", basicResult);
+//		alertDialog("basicResult", basicResult);
 		return ingredientList.toArray(new String[0]);
 	}
 
