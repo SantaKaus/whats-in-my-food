@@ -1,10 +1,12 @@
 package li.raymond.whatsinmyfood;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.method.LinkMovementMethod;
 import android.util.SparseArray;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -63,7 +65,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 
 	private String[] allIngredients(String basicResult) {
 		String formattedResult = basicResult.toLowerCase()
-				.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\s]", " ");
+				.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\-\\s]", " ").replaceAll("[ \t\n\r]*", " ");
 
 		String[] ingredientList = formattedResult.split(" {2}");
 		for (int i = 0; i < ingredientList.length; i++) {
@@ -76,23 +78,22 @@ public class AnalyzeActivity extends AppCompatActivity {
 	}
 
 	private String[] getIngredients() {
-		return new String[]{"Soy lecithin", "Polyglycerol polyricinoleate"};
+		return new String[]{"Soy lecithin", "Polyglycerol", "polyricinoleate", "Polyglycerol polyricinoleate"};
 	}
 
 	private String[] keyIngredients(String basicResult) {
 		String[] ingredients = getIngredients();
-		basicResult = basicResult.toLowerCase();
 		ArrayList<String> ingredientList = new ArrayList<>();
 		for (String ingredient: ingredients) {
 			if (basicResult.contains(ingredient.toLowerCase())) {
 				ingredientList.add(ingredient);
 			}
 		}
+		alertDialog("1", basicResult);
 		return ingredientList.toArray(new String[0]);
 	}
 
 	private void createTable(String[] iList) {
-
 		for (int i = 0; i < iList.length; i++) {
 			TableRow ingredientRow = new TableRow(this);
 			Paris.style(ingredientRow).apply(R.style.IngredientRow);
@@ -115,4 +116,13 @@ public class AnalyzeActivity extends AppCompatActivity {
 		return "aaaaaaa" + "\n" + "aaaaaaa" + "\n" + "aaaaaaa";
 	}
 
+
+	// Dialog used to send the user a message
+	private void alertDialog(String title, String message) {
+		AlertDialog alert = new AlertDialog.Builder(this).setMessage(message)
+				.setTitle(title).setCancelable(false)
+				.setPositiveButton("Ok", (dialog, id) -> {}).create();
+		alert.show();
+		((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+	}
 }
