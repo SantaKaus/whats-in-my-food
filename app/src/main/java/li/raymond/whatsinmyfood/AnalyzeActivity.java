@@ -18,6 +18,7 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,18 +75,19 @@ public class AnalyzeActivity extends AppCompatActivity {
 		return ingredientList;
 	}
 
-	private String[] keyIngredients(String basicResult) {
-		String formattedResult = basicResult.toLowerCase()
-				.split("ingredients: ")[1].replaceAll("[^a-zA-Z0-9\\s]", " ");
+	private String[] getIngredients() {
+		return new String[]{"Soy lecithin", "Polyglycerol polyricinoleate"};
+	}
 
-		String[] ingredientList = formattedResult.split(" {2}");
-		for (int i = 0; i < ingredientList.length; i++) {
-			Matcher m = Pattern.compile("\\(([^)]+)\\)").matcher(ingredientList[i]);
-			if (m.find()) {
-				ingredientList[i] = m.group(1);
+	private String[] keyIngredients(String basicResult) {
+		String[] ingredients = getIngredients();
+		ArrayList<String> ingredientList = new ArrayList<>();
+		for (String ingredient: ingredients) {
+			if (basicResult.contains(ingredient)) {
+				ingredientList.add(ingredient);
 			}
 		}
-		return ingredientList;
+		return ingredientList.toArray(new String[0]);
 	}
 
 	private void createTable(String[] iList) {
