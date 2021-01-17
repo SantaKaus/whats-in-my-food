@@ -20,5 +20,6 @@
 			android:layout_marginVertical="30dp"/>
 
 	</ScrollView>
+
 </LinearLayout>
 
