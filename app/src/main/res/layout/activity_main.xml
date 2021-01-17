@@ -7,18 +7,6 @@
 		tools:context=".MainActivity"
 		tools:ignore="HardcodedText">
 
-	<!--Button to open the image selector-->
-
-	<Button
-			android:id="@+id/takePhoto"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:layout_marginTop="32dp"
-			android:text="Take photo"
-			android:textColor="@android:color/white"
-			android:textSize="18sp" />
-
 	<Button
 			android:id="@+id/selectImage"
 			android:layout_width="wrap_content"
@@ -29,7 +17,6 @@
 			android:textColor="@android:color/white"
 			android:textSize="18sp" />
 
-	<!--ImageView to preview the selected image-->
 
 	<ImageView
 			android:id="@+id/preview"
