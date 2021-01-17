@@ -133,10 +133,7 @@ public class MainActivity extends AppCompatActivity {
 	public void alertDialog(String title, String message) {
 		AlertDialog alert = new AlertDialog.Builder(this).setMessage(message)
 				.setTitle(title).setCancelable(false)
-				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-					}
-				}).create();
+				.setPositiveButton("Ok", (dialog, id) -> {}).create();
 		alert.show();
 		((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 	}
