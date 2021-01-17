@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	Button takePhotoButton;
 	Button selectImageButton;
+	Button quickSearchButton;
 	Button analyzeImageButton;
 	ImageView imagePreview;
 	int SELECT_PICTURE = 200;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		selectImageButton = findViewById(R.id.selectImage);
+		quickSearchButton = findViewById(R.id.quickSearch);
 		analyzeImageButton = findViewById(R.id.analyzeImage);
 		analyzeImageButton.setVisibility(View.GONE);
 		imagePreview = findViewById(R.id.preview);
@@ -46,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				chooseImage();
+			}
+		});
+
+		quickSearchButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				quickSearch();
 			}
 		});
 
@@ -80,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 	}
-
+	private void quickSearch() {
+		Intent intent = new Intent(this, SearchActivity.class);
+		startActivity(intent);
+	}
 	private void analyzeIngredients() {
 		Intent intent = new Intent(this, AnalyzeActivity.class);
 		intent.putExtra("imageUri", imageUri.toString());

@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.paris.Paris;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -33,14 +35,17 @@ public class AnalyzeActivity extends AppCompatActivity {
 	TableLayout table;
 	TableRow tableRow;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_analyze);
+
 		table = findViewById(R.id.ingredientTable);
 		Intent intent = getIntent();
 		String imagePath = intent.getExtras().getString("imageUri");
 		imageUri = Uri.parse(imagePath);
+
 		try {
 			runTextRecognition();
 		} catch (IOException e) {

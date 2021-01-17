@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">What\'s in My Food?</string>
-	<string name="createImageFileFailedTitle">Error creating image file</string>
-	<string name="createImageFileFailedMsg">"Creating image file failed with error: "</string>
+    <string name="app_name">What\'s in My Food?</string>
+    <string name="createImageFileFailedTitle">Error creating image file</string>
+    <string name="createImageFileFailedMsg">"Creating image file failed with error: "</string>
 </resources>

@@ -23,10 +23,11 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/title"
 		android:layout_centerHorizontal="true"
-		android:text="insert description here"
+		android:gravity="center"
 		android:layout_marginTop="5dp"
+		android:text="Select an image or quick search"
 		android:textColor="@color/black"
-		android:textSize="16sp"/>
+		android:textSize="16sp" />
 
 	<androidx.constraintlayout.widget.Guideline
 		android:id="@+id/guideline"
@@ -46,11 +47,23 @@
 		android:id="@+id/selectImage"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
+		android:layout_alignParentStart="true"
+		android:layout_marginStart="20dp"
 		android:layout_marginTop="100dp"
 		android:text="Select Image"
 		android:textColor="@android:color/white"
-		android:textSize="18sp" />
+		android:textSize="14sp" />
+
+	<Button
+		android:id="@+id/quickSearch"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentStart="true"
+		android:layout_marginStart="210dp"
+		android:layout_marginTop="100dp"
+		android:text="Quick Search"
+		android:textColor="@android:color/white"
+		android:textSize="14sp" />
 
 	<ImageView
 		android:id="@+id/preview"
