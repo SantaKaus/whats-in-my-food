@@ -30,6 +30,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 	TextRecognizer recognizer;
 	TableLayout table;
 	TableRow tableRow;
+	Python py = Python.getInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
