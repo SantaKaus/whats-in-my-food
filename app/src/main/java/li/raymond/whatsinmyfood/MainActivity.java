@@ -37,17 +37,9 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		takePhotoButton = findViewById(R.id.takePhoto);
 		selectImageButton = findViewById(R.id.selectImage);
 		analyzeImageButton = findViewById(R.id.analyzeImage);
 		imagePreview = findViewById(R.id.preview);
-
-		takePhotoButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				takePhoto();
-			}
-		});
 
 		selectImageButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -63,6 +55,36 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 	}
+
+	private void chooseImage() {
+		Intent chooseImageIntent = new Intent();
+		chooseImageIntent.setType("image/*");
+		chooseImageIntent.setAction(Intent.ACTION_GET_CONTENT);
+
+		// pass the constant to compare it with the returned requestCode
+		startActivityForResult(Intent.createChooser(chooseImageIntent, "Select Picture"), SELECT_PICTURE);
+	}
+
+	// this function is triggered when user selects the image from the imageChooser
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == RESULT_OK && (requestCode == SELECT_PICTURE || requestCode == REQUEST_IMAGE_CAPTURE)) {
+			// Get the url of the image from data
+			imageUri = data.getData();
+			if (null != imageUri) {
+				// update the preview image in the layout
+				imagePreview.setImageURI(imageUri);
+			}
+		}
+	}
+
+	private void analyzeIngredients() {
+		Intent intent = new Intent(this, AnalyzeActivity.class);
+		intent.putExtra("imageUri", imageUri.toString());
+		startActivity(intent);
+	}
+
 
 	private File createImageFile() throws IOException {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -98,35 +120,6 @@ public class MainActivity extends AppCompatActivity {
 				}
 			}
 		}
-	}
-
-	private void chooseImage() {
-		Intent chooseImageIntent = new Intent();
-		chooseImageIntent.setType("image/*");
-		chooseImageIntent.setAction(Intent.ACTION_GET_CONTENT);
-
-		// pass the constant to compare it with the returned requestCode
-		startActivityForResult(Intent.createChooser(chooseImageIntent, "Select Picture"), SELECT_PICTURE);
-	}
-
-	// this function is triggered when user selects the image from the imageChooser
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == RESULT_OK && (requestCode == SELECT_PICTURE || requestCode == REQUEST_IMAGE_CAPTURE)) {
-			// Get the url of the image from data
-			imageUri = data.getData();
-			if (null != imageUri) {
-				// update the preview image in the layout
-				imagePreview.setImageURI(imageUri);
-			}
-		}
-	}
-
-	private void analyzeIngredients() {
-		Intent intent = new Intent(this, AnalyzeActivity.class);
-		intent.putExtra("imageUri", imageUri.toString());
-		startActivity(intent);
 	}
 
 	// Dialog used to send the user a message
