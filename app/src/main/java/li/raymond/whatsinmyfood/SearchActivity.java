@@ -41,7 +41,13 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void search(String ingredient) {
-        String description = python.getModule("main").callAttr("main", ingredient).toString();
-        output.setText(description);
+        try {
+            String description = python.getModule("main").callAttr("main", ingredient).toString();
+            output.setText(description);
+        } catch (Exception e){
+            output.setText("Compound not found!");
+        }
+
+
     }
 }

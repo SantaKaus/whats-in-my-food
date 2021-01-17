@@ -12,4 +12,4 @@ def main(ingredient):
     r = requests.get(Database_REST_API + '/' + Table_to_Query + query, headers = {"Authorization": Access_Key})
     return json.loads(r.text)[0]["annotation_quality"]
 
-print(main("Maltodextrin"))
+print(main("Zinc sulfate"))
