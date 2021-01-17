@@ -81,9 +81,10 @@ public class AnalyzeActivity extends AppCompatActivity {
 
 	private String[] keyIngredients(String basicResult) {
 		String[] ingredients = getIngredients();
+		basicResult = basicResult.toLowerCase();
 		ArrayList<String> ingredientList = new ArrayList<>();
 		for (String ingredient: ingredients) {
-			if (basicResult.contains(ingredient)) {
+			if (basicResult.contains(ingredient.toLowerCase())) {
 				ingredientList.add(ingredient);
 			}
 		}
