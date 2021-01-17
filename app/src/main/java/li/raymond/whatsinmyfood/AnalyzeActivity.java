@@ -94,7 +94,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 		basicResult = basicResult.replaceAll("\\s+", "");
 		ArrayList<String> ingredientList = new ArrayList<>();
 		for (String ingredient : ingredients.keySet())
-			if (basicResult.contains(ingredient.toLowerCase()))
+			if (basicResult.contains(ingredient.toLowerCase().replaceAll("\\s+", "")))
 				ingredientList.add(ingredient);
 		alertDialog("2", basicResult);
 		return ingredientList.toArray(new String[0]);
