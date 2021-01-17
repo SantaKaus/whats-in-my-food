@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.chaquo.python'
+//apply plugin: 'com.chaquo.python'
 
 android {
 	compileSdkVersion 30
@@ -13,13 +13,13 @@ android {
 		versionName "1.0"
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+		/*
 		ndk {
 			abiFilters "armeabi-v7a", "arm64-v8a"
 		}
 
 		python {
-			//buildPython "C:/Users/lxr82/AppData/Local/Programs/Python/Python38-32"
+			//buildPython "C:/Users/lxr82/AppData/Local/Programs/Python/Python38-32/python.exe"
 			pip {
 				install "requests"
 				install "json"
@@ -27,6 +27,8 @@ android {
 			}
 			staticProxy "dropbaseAPI"
 		}
+
+		 */
 	}
 
 	buildTypes {

@@ -93,7 +93,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 				ingredientList.add(ingredient);
 			}
 		}
-		alertDialog("1", basicResult);
+		alertDialog("2", basicResult);
 		return ingredientList.toArray(new String[0]);
 	}
 
