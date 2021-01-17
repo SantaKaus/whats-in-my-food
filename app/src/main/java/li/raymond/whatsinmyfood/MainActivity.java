@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	// Dialog used to send the user a message
-	public void alertDialog(String title, String message) {
+	private void alertDialog(String title, String message) {
 		AlertDialog alert = new AlertDialog.Builder(this).setMessage(message)
 				.setTitle(title).setCancelable(false)
 				.setPositiveButton("Ok", (dialog, id) -> {}).create();
